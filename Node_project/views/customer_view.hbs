@@ -9,16 +9,17 @@
   <div class="container">
     <h2>Customers List</h2>
       <button class="btn btn-success" data-toggle="modal" data-target="#MyModalAdd">Add New</button>
-    <table class="table table-striped" id="mytable">
+    <table class="table table-bordered" id="mytable">
       <thead>
-         <tr>
-           <th>Customer ID</th>
-           <th>Customer Name</th>
-           <th>Cutomer Address</th>
-         </tr>
+        <tr>
+          <th>Customer ID</th>
+          <th>Customer Name</th>
+          <th>Customer Address</th>
+          <th>Action</th>
+        </tr>
       </thead>
       <tbody>
-        {{#each results}}
+         {{#each results}}
         <tr>
           <td>{{ customers_id }}</td>
           <td>{{ customers_name }}</td>
@@ -28,7 +29,7 @@
             <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ customers_id }}">Delete</a>
           </td>
         </tr>
-        {{/each}}
+         {{/each}}
       </tbody>
     </table>
   </div>
@@ -50,7 +51,7 @@
               </div>
               
               <div class="form-group">
-                <input type="text" name="customers_address" class="form-control" placeholder="Address" required>
+                <input type="text" name="customers_address" class="form-control" placeholder="Customer Address" required>
               </div>
             </div>
             <div class="modal-footer">
@@ -79,7 +80,7 @@
                 <input type="text" name="customers_name" class="form-control customers_name" placeholder="Customer Name" required>
               </div>
               <div class="form-group">
-                <input type="text" name="customers_address" class="form-control address" placeholder="Address" required>
+                <input type="text" name="customers_address" class="form-control address" placeholder="Customer_Address" required>
               </div>
             </div>
             <div class="modal-footer">
@@ -115,26 +116,29 @@
         </div>
       </div>
     </form>
-</body>
 
 <script src="/assets/js/jquery.js"></script>
 <script src="/assets/js/bootstrap.js"></script>
 <script>
-  $(document).ready(function() {
-    $('mytable').on('click','edit', function() {
-      var customers_id = $(this).data('id');
-      var customers_name = $(this).data('customers_name');
-      var customers_address = $(this).data('customers_address');
-      $('#EditModal').modal('show');
-      $('.customers_name').val('customers_name');
-      $('.address').val('customers_address');
-      $('.customers_id').val('customers_id');
-    });
-    $('#mytable').on('click', 'delete', function() {
-      var customers_id = $(this).data('id');
-      $('#DeleteModal').modal('show');
-      $('.customers_id2').val(customers_id);
-    });  
-});
+   $(document).ready(function(){
+            //showing data to edit modal     
+        $('#mytable').on('click','.edit',function(){
+        var customers_id = $(this).data('id');
+        var customers_name = $(this).data('customers_name');
+        var customers_address = $(this).data('customers_address');
+        $('#EditModal').modal('show');
+        $('.customers_name').val(customers_name);
+        $('.customers_address').val(customers_address);
+        $('.customers_id').val(customers_id);
+        });
+            //showing delete record modal
+        $('#mytable').on('click','.delete',function(){
+        var product_id = $(this).data('id');
+        $('#DeleteModal').modal('show');
+        $('.customers_id2').val(customers_id);
+      });
+ 
+   });
 </script>
+</body>
 </html>

@@ -55,7 +55,7 @@ app.get('/',(req, res) => {
 
 //route for insert data
 app.post('/save', function(req, res) {
-  let data = {customer_name: req.body.customers_name, customers_address: req.body.customers_id};
+  let data = {customers_name: req.body.customers_name, customers_address: req.body.customers_address};
   var sql = "INSERT INTO customers SET ?";
   var query = conn.query(sql, data, function(err, results) {
     if(err) throw err;
@@ -73,7 +73,7 @@ app.post('/update', function(req, res) {
 
 //route for delete data
 app.post('/delete', function(req, res) {
-  let sql = "DELETE FROM customers WHERE customers_id="+req.body.product_id+"";
+  let sql = "DELETE FROM customers WHERE customers_id="+req.body.customers_id+"";
   let query = conn.query(sql, function(err, results) {
     if(err) throw err;
       res.redirect('/');
